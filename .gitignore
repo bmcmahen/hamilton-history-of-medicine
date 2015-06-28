@@ -1,4 +1,4 @@
 src/config.js
 node_modules
-static
-server
+static/*
+/server
