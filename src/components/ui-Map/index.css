@@ -1,0 +1,108 @@
+.Map {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.Map__container {
+  flex: 1;
+  height: 100%;
+  z-index: -1;
+
+}
+
+
+.Map__fly {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+
+.Map .mapboxgl-ctrl-attrib {
+  display: none;
+}
+
+.Map--active-child {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.Map__detail {
+  width: 450px;
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
+  background-color: #41afa5;
+  color: white;
+}
+
+.Map__spacer {
+  height: 50px;
+}
+
+.Map__detail > div > h2:after {
+  content: '–';
+  display: block;
+}
+
+.Map__section {
+  padding: 40px;
+}
+
+.Map__header {
+  max-height: 300px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.Map figure {
+  margin: 30px 0;
+}
+
+.Map__image-center {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+.Map__image-caption {
+  font-size: 0.8em;
+  margin-top: 15px;
+  line-height: 1.2em;
+  font-style: italic;
+}
+
+.Map__poi-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Map__poi-list h4 {
+  font-family: 'aktiv-grotesk-std';
+  font-weight: 400;
+  margin: 0;
+}
+
+.Map__poi-list img {
+  max-width: 100px;
+}
+
+.Map__poi-list li:first-child {
+  border-top: 1px solid;
+}
+
+.Map__poi-list li {
+  display: flex;
+  border-bottom: 1px solid;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.Map__poi-meta {
+  flex: 1;
+  display: flex;
+  padding: 0 10px;
+}

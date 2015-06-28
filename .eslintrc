@@ -1,0 +1,29 @@
+{
+  "extends": "eslint-config-airbnb",
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "semi": 0,
+    "func-names": 0,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2,
+    "space-before-function-paren": [2, "always"],
+    "padded-blocks": 0
+  },
+  "globals": {
+    "__SERVER__": true,
+    "__CLIENT__": true,
+    "mapboxgl": true,
+    "console": true
+  },
+  "settings": {
+    "ecmascript": 6,
+    "jsx": true
+  }
+}

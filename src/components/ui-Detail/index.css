@@ -1,0 +1,38 @@
+.Detail {
+
+}
+
+.Detail__reference {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.Detail__reference > h2 {
+
+}
+
+.Detail__content > h2:after {
+  content: '–';
+  display: block;
+}
+
+.Detail__reference > li > p {
+  font-size: 11px;
+  line-height: 16px;
+  margin: 10px 0;
+}
+
+.Detail__cover-image {
+  width: 100%;
+  min-height: 200px;
+  height: 33.3333vh;
+  background-position: 50%;
+  background-size: cover;
+}
+
+.Detail__content {
+  padding: 20px 40px;
+  background-color: #41afa5;
+  color: white;
+}

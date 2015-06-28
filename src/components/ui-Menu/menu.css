@@ -1,0 +1,152 @@
+.Menu {
+  width: 277px;
+  height: 100%;
+  position: fixed;
+  z-index: 90;
+  background-color: #ed6498;
+  background-color: #3bb2d0;
+  background-color: rgba(59, 178, 208, 0.9);
+  color: white;
+  left: 0;
+  top: 0;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+  transition-property: transform;
+  transform: translate3d(-277px, 0px, 0px);
+  transition-duration: 0.6s;
+}
+
+.Menu.open {
+  transform: translate3d(0px,0px,0px);
+}
+
+.Menu__controls {
+  position: absolute;
+  z-index: 91;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  transition-duration: 0.6s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+  transform: translate3d(317px,40px,0px);
+}
+
+.Menu__controls > h2 {
+  opacity: 1;
+  margin: 0;
+  transition-duration: 0.6s;
+  padding-left: 10px;
+  white-space: nowrap;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+  color: #3887be;
+  font-family: 'aktiv-grotesk-std', helvetica, sans-serif;
+  font-size: 19px;
+  line-height: 35px;
+}
+
+.Menu.open .Menu__controls > h2 {
+  opacity: 0;
+}
+
+.Menu__controls > i {
+  width: 45px;
+  height: 33px;
+  cursor: pointer;
+  transition-duration: 0.6s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+}
+
+.Menu.open .Menu__controls {
+  transform: translate3d(191px,40px,0px);
+}
+
+.Menu__controls > i > span {
+  display: block;
+  width: 45px;
+  height: 33px;
+  transform: translate3d(0px,0px,0px);
+  transition-property: transform;
+  transition-duration: .4s;
+  transition-timing-function: cubic-bezier(0.17,0.89,0.44,1.52);
+}
+
+.Menu.open .Menu__controls > i > span> p {
+  background-color: rgba(255,255,255,1);
+}
+.Menu.open .Menu__controls > i > span > p:nth-child(1) {
+  transform: translate3d(0px,8px,0px) rotate(-45deg);
+}
+
+.Menu__controls > i > span > p:nth-child(1) {
+  top: 9px;
+  transform: translate3d(0px,0px,0px) rotate(0deg);
+}
+
+.Menu.open .Menu__controls > i > span > p:nth-child(2) {
+  transform: translate3d(0px,0px,0px) scaleX(0);
+}
+
+.Menu__controls > i > span > p:nth-child(2) {
+  top: 16.5px;
+  transform: translate3d(0px,0px,0px) scaleX(1);
+}
+
+.Menu.open .Menu__controls > i > span > p:nth-child(3) {
+  transform: translate3d(0px,-6.5px,0px) rotate(45deg);
+}
+
+.Menu__controls > i > span > p:nth-child(3) {
+  top: 24px;
+  transform: translate3d(0px,0px,0px) rotate(0deg);
+}
+
+.Menu__controls > i > span >p {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #3887be;
+  margin: 0;
+  position: absolute;
+  z-index: 95;
+  left: 10px;
+  transition-property: transform,background-color;
+  transition-duration: .6s;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+  padding: 0;
+}
+
+.Menu__brand {
+  margin-top: 105px;
+  font-size: 28px;
+  font-weight: 300;
+  padding: 0 15px;
+  margin-bottom: 0;
+}
+
+.Menu__brand:after {
+  content: '-';
+  display: block;
+}
+
+.Menu__links {
+  padding: 0 15px;
+  list-style-type: none;
+}
+
+.Menu__links > li {
+}
+
+.Menu__links > li > a {
+  color: white;
+  font-size: 16px;
+  display: block;
+  padding: 2px 0;
+  text-decoration: none;
+}
+
+.Menu__links > li > a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
