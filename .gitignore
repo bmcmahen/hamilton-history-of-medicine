@@ -2,3 +2,4 @@ src/config.js
 node_modules
 static/*
 /server
+npm-debug.log
