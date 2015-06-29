@@ -16,8 +16,8 @@ const master = Object.freeze({
       reporter: GoodLoggly,
       events: { log: '*', request: '*', error: '*', ops: '*' },
       config: {
-        token: '8291d290-7bce-4e67-b9fa-6d8caf83c0c1',
-        subdomain: 'bmcmahen',
+        token: 'TOKEN',
+        subdomain: 'SUBDOMAIN',
         name: 'medicine',
         tags: ['medicine', 'nodejs']
       }
