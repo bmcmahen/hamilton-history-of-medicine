@@ -2,6 +2,14 @@ import React, {PropTypes} from 'react'
 import Container from '../ui-Container'
 import {Link, Navigation} from 'react-router'
 import Detail from '../ui-Detail'
+import {updatePage} from '../../state/actions/layout'
+
+function updatePageName (redux) {
+  return new Promise(resolve => {
+    redux.dispatch(updatePage('Timeline')) // synchronous
+    resolve()
+  })
+}
 
 // timeline grid: https://strml.github.io/react-grid-layout/examples/1-basic.html
 
@@ -12,6 +20,18 @@ export default React.createClass({
   propTypes: {
     activeDocument: PropTypes.object,
     docs: PropTypes.array
+  },
+
+  contextTypes: {
+    redux: PropTypes.object
+  },
+
+  statics: {
+
+    fetchData (redux) {
+      return updatePage(redux)
+    }
+
   },
 
   getInitialState () {
@@ -30,6 +50,10 @@ export default React.createClass({
         isOpen={this.state.isOpen}
       />
     )
+  },
+
+  componentWillMount () {
+    updatePageName(this.context.redux)
   },
 
   componentWillReceiveProps (nextProps) {

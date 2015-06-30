@@ -78,7 +78,6 @@ export default function renderServer (request, reply) {
       let nextPath = transition.redirectInfo.pathname
       return reply.redirect(nextPath)
     }
-
     // call any promise contained within a static fetchData method
     Promise.all(routerState.components
       .filter(component => component.fetchData)

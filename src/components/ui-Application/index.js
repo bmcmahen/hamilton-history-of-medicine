@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import Menu from '../ui-Menu'
+import shouldPureComponentUpdate from 'react-pure-render/function'
 
 // stylesheet dependencies
 require('./index.css')
@@ -9,6 +10,8 @@ require('./index.css')
  */
 
 export default class Application extends Component {
+
+  shouldComponentUpdate = shouldPureComponentUpdate
 
   constructor (props, context) {
     super(props, context)
@@ -22,7 +25,7 @@ export default class Application extends Component {
   render () {
     return (
       <section className='Application'>
-        <Menu title='Timeline' />
+        <Menu />
         {this.props.children}
       </section>
     )

@@ -1,9 +1,8 @@
-import React from 'react'
-import Container from '../ui-Container'
+import React, {PropTypes} from 'react'
 import stages from './stages'
 import debug from 'debug'
 import Waypoint from 'react-waypoint'
-import _ from 'lodash'
+import {updatePage} from '../../state/actions/layout'
 
 const log = debug('app:ui-Map')
 
@@ -11,39 +10,58 @@ if (__CLIENT__) {
   require('./index.css')
 }
 
+// define our data fetching fns separately, so that
+// they can optionally be called in componentDidMount/willMount,
+// or static fetchData fn
+function updatePageName (redux) {
+  return new Promise(resolve => {
+    redux.dispatch(updatePage('Map'))
+    resolve()
+  })
+}
+
+
 export default React.createClass({
 
   displayName: 'Map',
 
+  contextTypes: {
+    redux: PropTypes.object
+  },
+
   statics: {
-    
-  },
 
-  componentWillUpdate (nextProps, nextState) {
-    if (!this.map) return
-
-    // transition the main stage
-    if (nextState.stage !== this.state.stage) {
-      this.toggleMapClasses(nextState.stage)
-      this.transitionTo(nextState.stage)
-
-      // transition from a detailed stage, to a non-detailed
-      // stage; i.e., remove the detailed stage className
-      if (nextState.detailedStage != null) {
-        this.map.removeClass(nextState.detailedStage)
-      }
-
-    }
-
-    // transition detail stage if we have a detailed stage,
-    // and if that detailed stage doesn't equal the previous one
-    if (nextState.detailedStage
-      && (nextState.detailedStage !== this.state.detailedStage)) {
-      this.transitionTo(nextState.detailedStage)
-      this.toggleDetailClasses(nextState.detailedStage)
+    fetchData (redux) {
+      return updatePageName(redux)
     }
 
   },
+
+  // componentWillUpdate (nextProps, nextState) {
+  //   if (!this.map) return
+  //
+  //   // // transition the main stage
+  //   // if (nextState.stage !== this.state.stage) {
+  //   //   this.toggleMapClasses(nextState.stage)
+  //   //   this.transitionTo(nextState.stage)
+  //   //
+  //   //   // transition from a detailed stage, to a non-detailed
+  //   //   // stage; i.e., remove the detailed stage className
+  //   //   if (nextState.detailedStage != null) {
+  //   //     this.map.removeClass(nextState.detailedStage)
+  //   //   }
+  //   //
+  //   // }
+  //   //
+  //   // // transition detail stage if we have a detailed stage,
+  //   // // and if that detailed stage doesn't equal the previous one
+  //   // if (nextState.detailedStage
+  //   //   && (nextState.detailedStage !== this.state.detailedStage)) {
+  //   //   this.transitionTo(nextState.detailedStage)
+  //   //   this.toggleDetailClasses(nextState.detailedStage)
+  //   // }
+  //
+  // },
 
   getInitialState () {
     return {
@@ -54,41 +72,46 @@ export default React.createClass({
 
   render () {
     return (
-      <Container
-        main={this.renderMap()}
-        detail={this.renderDetail()}
-        onRequestOpen={this.onRequestOpen}
-        onRequestClose={this.onRequestClose}
-        isOpen={this.state.isOpen}
-      />
+      <div className='Map'>
+        <div className='Map__main-heading'>
+
+          <div className='Map__main-heading-image'/>
+        </div>
+        <div className='Map__container' ref='map' />
+        {this.renderMap()}
+      </div>
     )
   },
 
   componentDidMount () {
+
+    // ensure that we have set the name correctly
+    updatePageName(this.context.redux)
+
     let el = React.findDOMNode(this.refs.map)
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYm1jbWFoZW4iLCJhIjoiMmI0ZDVmZDI3YjFlM2ZiYTVmZDQ2MjBhMGQxNTMyNzgifQ.l_MuF4H2l44qpbN8NP9WEw'
 
-    let initialStage = this.getStage(this.state.stage)
+    // let initialStage = this.getStage(this.state.stage)
 
     this.map = new mapboxgl.Map({
       container: el,
       interactive: false,
-      style: require('./map-style.json'),
-      center: initialStage.target,
-      zoom: initialStage.zoom
+      style: 'https://www.mapbox.com/mapbox-gl-styles/styles/light-v7.json',
+      center: [40, -74.50], // starting position
+      zoom: 9
     })
 
     this.map.addClass('stage0')
 
-    this.map.on('style.load', () => {
-
-      _.each(stages, stage => {
-        this.map.addSource(stage.name, stage.source)
-        this.map.addLayer(stage.layer)
-      })
-
-    })
+    // this.map.on('style.load', () => {
+    //
+    //   _.each(stages, stage => {
+    //     // this.map.addSource(stage.name, stage.source)
+    //     // this.map.addLayer(stage.layer)
+    //   })
+    //
+    // })
 
     // resize our map when the window is resized
     window.addEventListener('resize', this.onResize)
@@ -106,9 +129,6 @@ export default React.createClass({
 
   renderMap () {
     return (
-      <div className='Map'>
-
-        <div className='Map__container' ref='map' />
         <div className='Map__detail'>
           <Waypoint
             onEnter={this.onEnter.bind(this, 'stage0')}
@@ -191,8 +211,6 @@ export default React.createClass({
             <p>Nisi laboris tempor excepteur non irure voluptate eiusmod commodo qui reprehenderit est Lorem in nisi.</p>
             <p>Mollit excepteur consectetur exercitation qui sint elit sint est amet ullamco.</p>
           </div>
-
-        </div>
       </div>
     )
   },

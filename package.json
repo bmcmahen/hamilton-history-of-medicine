@@ -13,6 +13,7 @@
     "good-console": "^5.0.2",
     "good-loggly": "^1.0.1",
     "hapi": "^8.6.1",
+    "immutable": "^3.7.4",
     "keymirror": "^0.1.1",
     "lodash": "^3.9.3",
     "mapbox-gl": "^0.8.1",
@@ -20,6 +21,7 @@
     "piping": "^0.1.8",
     "react": "^0.13.3",
     "react-helmet": "^1.0.1",
+    "react-pure-render": "^1.0.2",
     "react-router": "^1.0.0-beta2",
     "react-waypoint": "^1.0.1",
     "redux": "^0.12.0"

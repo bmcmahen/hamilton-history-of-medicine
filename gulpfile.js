@@ -49,6 +49,7 @@ gulp.task('build', ['build-backend', 'build-frontend'])
 gulp.task('watch', ['watch-frontend', 'watch-backend'])
 
 gulp.task('run', ['watch-backend', 'watch-frontend'], function () {
+  running = true
   nodemon({
     execMap: { js: 'node' },
     script: path.join(__dirname, 'server/server'),
@@ -56,7 +57,6 @@ gulp.task('run', ['watch-backend', 'watch-frontend'], function () {
     watch: ['foo/'],
     ext: 'noop'
   }).on('restart', function () {
-    running = true
     console.log('Restarted Hapi') //eslint-disable-line
   })
 })

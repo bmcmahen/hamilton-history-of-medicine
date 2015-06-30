@@ -8,7 +8,11 @@
   flex: 1;
   height: 100%;
   z-index: -1;
-
+  height: 700px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 
@@ -30,11 +34,13 @@
 
 .Map__detail {
   width: 450px;
-  height: 100%;
-  overflow-y: scroll;
   position: relative;
   background-color: #41afa5;
+  transform: translate3d(0,0,0);
   color: white;
+  position: absolute;
+  top: 50px;
+  right: 7%;
 }
 
 .Map__spacer {
@@ -105,4 +111,21 @@
   flex: 1;
   display: flex;
   padding: 0 10px;
+}
+
+
+.Map__main-heading {
+  height: 80vh;
+  width: 100%;
+  position: relative;
+}
+
+.Map__main-heading-image {
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg)
 }

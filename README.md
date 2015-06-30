@@ -8,3 +8,7 @@ This website uses Hapi, React, React-Router, and Redux to perform both server-si
 $ npm install
 $ gulp run
 ```
+
+### Potential Source of Inspiration
+
+[circle packing](http://codepen.io/ge1doot/pen/LVeOpv)

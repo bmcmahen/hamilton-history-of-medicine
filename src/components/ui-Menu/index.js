@@ -1,7 +1,11 @@
 import React, {Component, PropTypes} from 'react'
 import Menu from './menu.js'
 import {Link} from 'react-router'
+import {connect} from 'redux/react'
 
+@connect(state => ({
+  layout: state.layout
+}))
 export default class MenuController extends Component {
 
   static propTypes = {
@@ -18,7 +22,7 @@ export default class MenuController extends Component {
     return (
       <Menu isOpen={this.state.isOpen}
         onRequestClose={this.close.bind(this)}
-        title={this.props.title}
+        title={this.props.layout.get('title')}
         onRequestOpen={this.open.bind(this)}>
         <div>
           <h1 className='Menu__brand'>
