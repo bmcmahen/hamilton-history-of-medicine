@@ -14,7 +14,8 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "space-before-function-paren": [2, "always"],
-    "padded-blocks": 0
+    "padded-blocks": 0,
+    "new-cap": 0
   },
   "globals": {
     "__SERVER__": true,

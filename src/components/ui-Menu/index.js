@@ -23,6 +23,7 @@ export default class MenuController extends Component {
       <Menu isOpen={this.state.isOpen}
         onRequestClose={this.close.bind(this)}
         title={this.props.layout.get('title')}
+        toc={this.props.layout.get('toc')}
         onRequestOpen={this.open.bind(this)}>
         <div>
           <h1 className='Menu__brand'>

@@ -1,0 +1,62 @@
+.TableOfContents {
+  position: relative;
+}
+
+.TableOfContents__dropdown {
+  position: absolute;
+  top: 0;
+  display: none;
+}
+
+.TableOfContents--is-active .TableOfContents__dropdown {
+  display: block;
+}
+
+.TableOfContents > h2 {
+  opacity: 1;
+  margin: 0;
+  transition-duration: 0.6s;
+  padding-left: 10px;
+  white-space: nowrap;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+  color: #3887be;
+  font-family: 'aktiv-grotesk-std', helvetica, sans-serif;
+  font-size: 19px;
+  line-height: 35px;
+  min-width: 175px;
+  cursor: pointer;
+}
+
+.TableOfContents__arrow {
+  padding-right: 5px;
+}
+
+
+ul.TableOfContents__dropdown {
+  margin: 0;
+  margin-top: 35px;
+  padding: 0;
+  list-style-type: none;
+  background-color: rgba(0, 0, 0, 0.58);
+  margin-left: 20px;
+  padding: 7px 0;
+  color: white;
+  min-width: 150px;
+  border-radius: 5px;
+}
+
+
+li.TableOfContents__item.TableOfContents__item--is-active {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+li.TableOfContents__item {
+  cursor: pointer;
+  padding: 0 15px;
+}
+
+li.TableOfContents__item:hover {
+  background-color: rgba(255,255,255,0.1);
+}

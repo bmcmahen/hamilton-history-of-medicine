@@ -16,14 +16,14 @@
 
 .Container__main.open {
   pointer-events: none;
-  transform: translate3d(-500px, 0px, 0px);
+  transform: translate3d(-450px, 0px, 0px);
 }
 
 .Container__detail {
   position: fixed;
   height: 100%;
-  width: 500px;
-  transform: translate3d(500px,0px,0px);
+  width: 450px;
+  transform: translate3d(450px,0px,0px);
   z-index: 51;
   background-color: white;
   right: 0;

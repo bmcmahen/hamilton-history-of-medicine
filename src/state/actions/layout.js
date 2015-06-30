@@ -1,4 +1,9 @@
-import { UPDATE_PAGE, UPDATE_PAGE_TOC } from '../constants'
+import {
+  UPDATE_PAGE,
+  UPDATE_PAGE_TOC,
+  REMOVE_PAGE_TOC
+  } from '../constants'
+import Immutable from 'immutable'
 
 export function updatePage (title) {
   return {
@@ -7,9 +12,20 @@ export function updatePage (title) {
   }
 }
 
-export function updateTOC (toc) {
+export function updateTOC (activeOption, options) {
+  let update = {
+    activeOption,
+    options
+  }
+
   return {
     type: UPDATE_PAGE_TOC,
-    value: toc
+    value: Immutable.fromJS(update)
+  }
+}
+
+export function removeTOC () {
+  return {
+    type: REMOVE_PAGE_TOC
   }
 }

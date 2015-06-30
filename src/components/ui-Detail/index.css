@@ -29,10 +29,12 @@
   height: 33.3333vh;
   background-position: 50%;
   background-size: cover;
+  display: none;
 }
 
 .Detail__content {
   padding: 20px 40px;
   background-color: #41afa5;
+  padding-top: 100px;
   color: white;
 }

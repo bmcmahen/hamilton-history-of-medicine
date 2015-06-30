@@ -2,13 +2,14 @@
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 .Map__container {
   flex: 1;
   height: 100%;
-  z-index: -1;
-  height: 700px;
+  z-index: -2;
+  height: 100vh;
   width: 100%;
   position: fixed;
   top: 0;
@@ -16,11 +17,22 @@
 }
 
 
+.Map__text-content {
+  overflow-y: auto;
+  width: 100%;
+  position: relative;
+}
+
 .Map__fly {
   position: fixed;
   top: 10px;
   right: 10px;
   z-index: 10;
+}
+
+.Map__section-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 
@@ -52,8 +64,20 @@
   display: block;
 }
 
+.Container__main.open .Map__section {
+  opacity: 0;
+}
+
 .Map__section {
   padding: 40px;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  background-color: #3bb2d0;
+  align-self: flex-end;
+  color: white;
+  margin-right: 100px;
+  margin-top: 40px;
+  width: 400px;
 }
 
 .Map__header {
@@ -84,6 +108,8 @@
 .Map__poi-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .Map__poi-list h4 {
@@ -93,17 +119,19 @@
 }
 
 .Map__poi-list img {
-  max-width: 100px;
+  max-width: 100%;
 }
 
 .Map__poi-list li:first-child {
-  border-top: 1px solid;
+  /*border-top: 1px solid;*/
 }
 
 .Map__poi-list li {
   display: flex;
-  border-bottom: 1px solid;
-  padding-top: 5px;
+  position: relative;
+  width: 50%;
+  /*border-bottom: 1px solid;*/
+  border: 4px solid white;
   cursor: pointer;
 }
 
@@ -111,13 +139,22 @@
   flex: 1;
   display: flex;
   padding: 0 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
 }
 
 
 .Map__main-heading {
-  height: 80vh;
+  height: 100vh;
+  flex: 1;
   width: 100%;
+  background-size: cover;
+  background-image: url(https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg);
   position: relative;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .Map__main-heading-image {
@@ -127,5 +164,25 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: -1;
   background-image: url(https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg)
+}
+
+.Map__main-heading > .Map__section.Map__section--dark {
+  width: 400px;
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  margin: 0;
+  margin-right: 100px;
+}
+
+.Map__section--white {
+  background-color: rgba(255,255,255,0.9);
+  color: #666;
+}
+
+.Map h2:after {
+  content: '\2013';
+  display: block;
 }

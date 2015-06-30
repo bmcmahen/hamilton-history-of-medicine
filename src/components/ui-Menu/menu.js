@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import classNames from 'classnames'
+import TableOfContents from './table-of-contents'
 
 if (__CLIENT__) {
   require('./menu.css')
@@ -16,21 +17,21 @@ class Menu extends Component {
     title: PropTypes.string
   }
 
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {}
     this.onWindowClick = this.onWindowClick.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount () {
     window.addEventListener('click', this.onWindowClick)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount () {
     window.removeEventListener('click', this.onWindowClick)
   }
 
-  onWindowClick(e){
+  onWindowClick (e) {
     // request to close menu when clicking outside of
     // the menu when it is already open
     if (this.props.isOpen) {
@@ -41,7 +42,7 @@ class Menu extends Component {
     }
   }
 
-  render(){
+  render () {
 
     const classes = classNames({
       'Menu': true,
@@ -62,13 +63,19 @@ class Menu extends Component {
           {this.props.title &&
             <h2>{this.props.title}</h2>
           }
+          {this.props.toc &&
+            <TableOfContents
+              options={this.props.toc.get('options')}
+              activeOption={this.props.toc.get('activeOption')}
+            />
+          }
         </div>
         {this.props.children}
       </div>
     )
   }
 
-  toggleState(){
+  toggleState () {
     if (this.props.isOpen) {
       this.props.onRequestClose()
     } else {
