@@ -35,15 +35,17 @@
 
 ul.TableOfContents__dropdown {
   margin: 0;
-  margin-top: 35px;
-  padding: 0;
-  list-style-type: none;
-  background-color: rgba(0, 0, 0, 0.58);
-  margin-left: 20px;
-  padding: 7px 0;
-  color: white;
-  min-width: 150px;
-  border-radius: 5px;
+    margin-top: 30px;
+    padding: 0;
+    list-style-type: none;
+    background-color: transparent;
+    margin-left: 12px;
+    padding: 7px 0;
+    color: white;
+    min-width: 250px;
+    /* border-radius: 5px; */
+    font-size: 1.1em;
+    line-height: 1.9em;
 }
 
 

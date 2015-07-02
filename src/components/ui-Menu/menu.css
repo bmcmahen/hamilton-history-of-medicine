@@ -46,7 +46,15 @@
   line-height: 35px;
 }
 
-.Menu.open .Menu__controls > h2 {
+.Menu .TableOfContents {
+  transition-duration: 0.6s;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
+  opacity: 1;
+}
+
+.Menu.open .Menu__controls > h2,
+.Menu.open .TableOfContents {
   opacity: 0;
 }
 

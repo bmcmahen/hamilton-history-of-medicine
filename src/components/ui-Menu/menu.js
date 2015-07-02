@@ -6,15 +6,19 @@ if (__CLIENT__) {
   require('./menu.css')
 }
 
-class Menu extends Component {
+export default class Menu extends Component {
 
-  displayName = 'Menu'
+  static contextTypes = {
+    redux: PropTypes.object
+  }
 
   static propTypes = {
     onRequestClose: PropTypes.func.isRequired,
     onRequestOpen: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    title: PropTypes.string
+    title: PropTypes.string,
+    tocIsOpen: PropTypes.bool,
+    tocHasBackdrop: PropTypes.bool
   }
 
   constructor (props) {
@@ -49,11 +53,18 @@ class Menu extends Component {
       'open': this.props.isOpen
     })
 
+    const {
+      toc,
+      tocIsOpen,
+      tocHasBackdrop,
+      tocIsLocked
+    } = this.props
+
     // todo: accessibility! the button should have descriptive text.
     return (
       <div className={classes}>
         <div className='Menu__controls'>
-          <i role='button' onClick={this.toggleState.bind(this)}>
+          <i role='button' onClick={::this.toggleState}>
             <span>
               <p/>
               <p/>
@@ -65,8 +76,11 @@ class Menu extends Component {
           }
           {this.props.toc &&
             <TableOfContents
-              options={this.props.toc.get('options')}
-              activeOption={this.props.toc.get('activeOption')}
+              options={toc.get('options')}
+              isOpen={tocIsOpen}
+              isLocked={tocIsLocked}
+              hasBackdrop={tocHasBackdrop}
+              activeOption={toc.get('activeOption')}
             />
           }
         </div>
@@ -83,5 +97,3 @@ class Menu extends Component {
     }
   }
 }
-
-export default Menu

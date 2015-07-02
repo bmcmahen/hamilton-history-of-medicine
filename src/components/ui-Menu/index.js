@@ -8,6 +8,10 @@ import {connect} from 'redux/react'
 }))
 export default class MenuController extends Component {
 
+  static contextTypes = {
+    redux: PropTypes.object
+  }
+
   static propTypes = {
     title: PropTypes.string
   }
@@ -19,12 +23,18 @@ export default class MenuController extends Component {
 
   render () {
 
+    let {layout} = this.props
+
     return (
-      <Menu isOpen={this.state.isOpen}
-        onRequestClose={this.close.bind(this)}
-        title={this.props.layout.get('title')}
-        toc={this.props.layout.get('toc')}
-        onRequestOpen={this.open.bind(this)}>
+      <Menu
+        isOpen={this.state.isOpen}
+        onRequestClose={::this.close}
+        title={layout.get('title')}
+        toc={layout.get('toc')}
+        tocIsLocked={layout.get('tocIsLocked')}
+        tocIsOpen={layout.get('tocIsOpen')}
+        tocHasBackdrop={layout.get('tocHasBackdrop')}
+        onRequestOpen={::this.open}>
         <div>
           <h1 className='Menu__brand'>
             History of Medicine

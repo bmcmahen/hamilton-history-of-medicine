@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import ImmutableTypes from 'react-immutable-proptypes'
 import classNames from 'classnames'
+import {showTOC} from '../../state/actions/layout'
 
 if (__CLIENT__) {
   require('./table-of-contents.css')
@@ -10,9 +11,16 @@ export default React.createClass({
 
   displayName: 'TableOfContents',
 
+  contextTypes: {
+    redux: PropTypes.object
+  },
+
   propTypes: {
-    activeOption: PropTypes.number.isRequired,
-    options: ImmutableTypes.list.isRequired
+    activeOption: PropTypes.number,
+    options: ImmutableTypes.list.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    isLocked: PropTypes.bool.isRequired,
+    hasBackdrop: PropTypes.bool
   },
 
   componentDidMount () {
@@ -23,14 +31,8 @@ export default React.createClass({
     window.removeEventListener('click', this.onWindowClick)
   },
 
-  getInitialState () {
-    return {
-      isOpen: false
-    }
-  },
-
   onWindowClick (e) {
-    if (!this.state.isOpen) {
+    if (!this.props.isOpen || this.props.isLocked) {
       return
     }
     let el = React.findDOMNode(this)
@@ -39,7 +41,7 @@ export default React.createClass({
     }
 
     setTimeout(() => {
-      this.setState({ isOpen: false })
+      this.context.redux.dispatch(showTOC(!this.props.isOpen))
     }, 0)
   },
 
@@ -47,14 +49,14 @@ export default React.createClass({
 
     const classes = classNames({
       'TableOfContents': true,
-      'TableOfContents--is-active': this.state.isOpen
+      'TableOfContents--is-active': this.props.isOpen
     })
 
     return (
       <div className={classes}>
         <h2 onClick={this.toggleModal}>
           <span className='TableOfContents__arrow'> / </span>
-          {this.props.options.get(this.props.activeOption)}
+          Contents
         </h2>
         <ul className='TableOfContents__dropdown'>
           {this.props.options.map(this.renderOption)}
@@ -64,21 +66,29 @@ export default React.createClass({
   },
 
   renderOption (option, i) {
+    if (i === this.props.activeOption) {
+      return null
+    }
+
     const classes = classNames({
       'TableOfContents__item': true,
       'TableOfContents__item--is-active': i === this.props.activeOption
     })
 
     return (
-      <li className={classes}>
+      <li className={classes} key={option}>
         <span>{option}</span>
       </li>
     )
   },
 
   toggleModal (e) {
+    if (this.props.isLocked) {
+      return
+    }
     e.preventDefault()
-    this.setState({ isOpen: !this.state.isOpen })
+    let {redux} = this.context
+    redux.dispatch(showTOC(!this.props.isOpen))
   }
 
 })
