@@ -121,6 +121,9 @@ export default {
       type: 'symbol',
       source: 'stage1',
       layout: symbolLayout,
+      transition: {
+        duration: 2000
+      },
       paint: {
         'text-size': 14,
         'text-opacity': 0,
@@ -140,8 +143,8 @@ export default {
 
   stage2: {
     key: 'stage2',
-    target: [43.1543, -79.8272],
-    zoom: 13,
+    target: [43.2543, -79.7072],
+    zoom: 10,
     transition: {
       type: 'fly',
       options: {

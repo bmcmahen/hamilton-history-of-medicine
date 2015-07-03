@@ -65,6 +65,7 @@
     "@label-halo": "#fff",
     "@grass": "#e5e5e5",
     "@water": "#d6d6d6",
+    "@water-blue": "#08c",
     "@state-label": {
       "base": 1,
       "stops": [[0, "#929292"], [20, "#929292"]]
@@ -355,6 +356,9 @@
         "base": 1,
         "stops": [[6, 0.25], [20, 6]]
       }
+    },
+    "paint.stage2": {
+      "line-color": "@water-blue"
     }
   }, {
     "id": "waterway_stream",
@@ -368,6 +372,9 @@
         "base": 1,
         "stops": [[13, 0.75], [20, 4]]
       }
+    },
+    "paint.stage2": {
+      "line-color": "@water-blue"
     }
   }, {
     "id": "water",
@@ -379,6 +386,9 @@
     },
     "paint": {
       "fill-color": "@water"
+    },
+    "paint.stage2": {
+      "fill-color": "@water-blue"
     }
   }, {
     "id": "aeroway_runway",
