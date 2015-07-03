@@ -32,7 +32,7 @@ export default class MapListView extends React.Component {
 
     return (
       <ul className={classes} style={this.props.style}>
-        {this.props.listItems.map(this.renderItem)}
+        {this.props.listItems.map(::this.renderItem)}
       </ul>
     )
   }
@@ -53,7 +53,7 @@ export default class MapListView extends React.Component {
     )
   }
 
-  selectItem (e, item, i) {
+  selectItem (item, i, e) {
     e.preventDefault()
     this.props.onItemSelect(item, i)
   }

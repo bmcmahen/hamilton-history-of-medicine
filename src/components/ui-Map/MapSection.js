@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 import Waypoint from 'react-waypoint'
+import setClasses from 'classnames'
 
 if (__CLIENT__) {
   require('./MapSection.css')
@@ -21,9 +22,8 @@ export default class MapSection extends React.Component {
 
   render () {
     let { title, style, className, type } = this.props
-    let classes = className({
+    let classes = setClasses({
       'MapSection': true,
-      [className]: !!className,
       ['MapSection--light']: type === 'light',
       ['MapSection--dark']: type === 'dark'
     })

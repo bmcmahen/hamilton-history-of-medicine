@@ -91,6 +91,7 @@ export default React.createClass({
         <div className='Map__text-content'>
           <div className='Map__main-heading'>
             <div className='Map__section Map__section--dark'>
+              <Waypoint onLeave={this.onLeaveHeader} onEnter={this.showTableOfContents} />
               <h2>Public Health in Hamilton</h2>
               <p>Consequat pariatur proident cillum nisi sunt nulla irure proident nulla commodo anim cupidatat.</p>
               <p>Anim non sit ex labore officia enim proident occaecat sunt. Esse nisi do eu magna qui commodo exercitation labore esse culpa occaecat deserunt reprehenderit. Dolore aliqua id elit deserunt consequat. Ad excepteur adipisicing ullamco laboris esse occaecat anim tempor deserunt pariatur eiusmod exercitation. Mollit officia veniam laboris tempor aliqua aliqua velit ipsum quis ea ipsum. Nulla amet occaecat incididunt et labore sit laboris.
@@ -163,8 +164,19 @@ export default React.createClass({
     )
   },
 
+  showTableOfContents () {
+    this.context.redux.dispatch(lockTOC(true))
+    this.context.redux.dispatch(showTOC(true))
+  },
+
+  onLeaveHeader () {
+    this.context.redux.dispatch(lockTOC(false))
+    this.context.redux.dispatch(showTOC(false))
+  },
+
   onItemSelect (item) {
     log('selected item %o', item)
+    this.setState({ isOpen: true })
   },
 
   onSectionEnter (name) {

@@ -1,0 +1,26 @@
+.MapSection {
+  display: flex;
+  opacity: 1;
+  justify-content: flex-end;
+  transition: opacity 0.5s ease-out;
+}
+
+.MapSection__content {
+  padding: 40px;
+  background-color: #3bb2d0;
+  align-self: flex-end;
+  color: white;
+  margin-right: 100px;
+  margin-top: 40px;
+  width: 450px;
+}
+
+.Container__main.open .MapSection {
+  opacity: 0;
+}
+
+
+.MapSection--light .MapSection__content {
+  background-color: rgba(255,255,255,0.9);
+  color: #666;
+}

@@ -13,7 +13,6 @@ export default class Mapbox extends React.Component {
     interactive: PropTypes.bool,
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     activeItem: PropTypes.object,
-    activeKey: PropTypes.string,
     onKeyChange: PropTypes.func // potentially allow interactive map to emit events
   }
 
@@ -54,6 +53,10 @@ export default class Mapbox extends React.Component {
   }
 
   componentWillUpdate (nextProps) {
+    if (!nextProps.activeItem) {
+      return
+    }
+
     if (nextProps.activeItem.key !== this.activeItem.key) {
       this.transitionToStage(nextProps.activeItem)
     }

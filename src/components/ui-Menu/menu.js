@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 import classNames from 'classnames'
 import TableOfContents from './table-of-contents'
+import { addons } from 'react/addons'
+const { CSSTransitionGroup } = addons
 
 if (__CLIENT__) {
   require('./menu.css')
