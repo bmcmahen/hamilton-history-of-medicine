@@ -76,8 +76,9 @@ export default class Menu extends Component {
           {this.props.title &&
             <h2>{this.props.title}</h2>
           }
-          {this.props.toc &&
+          {toc &&
             <TableOfContents
+              key='TableOfContents'
               options={toc.get('options')}
               isOpen={tocIsOpen}
               isLocked={tocIsLocked}

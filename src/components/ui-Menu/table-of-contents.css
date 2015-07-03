@@ -5,11 +5,9 @@
 .TableOfContents__dropdown {
   position: absolute;
   top: 0;
-  display: none;
 }
 
 .TableOfContents--is-active .TableOfContents__dropdown {
-  display: block;
 }
 
 .TableOfContents > h2 {
@@ -39,15 +37,21 @@ ul.TableOfContents__dropdown {
     padding: 0;
     list-style-type: none;
     background-color: transparent;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, background-color 0.3s ease-out 0.4s, margin-top 0.3s ease-out 0.4s;
     margin-left: 12px;
     padding: 7px 0;
     color: white;
     min-width: 250px;
-    /* border-radius: 5px; */
+     border-radius: 10px; 
     font-size: 1.1em;
     line-height: 1.9em;
+
 }
 
+.TableOfContents--has-background .TableOfContents__dropdown {
+  margin-top: 40px;
+  background-color: rgba(59, 129, 180, 0.8);
+}
 
 li.TableOfContents__item.TableOfContents__item--is-active {
   opacity: 0.2;

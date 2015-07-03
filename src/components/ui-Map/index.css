@@ -84,9 +84,6 @@
   flex: 1;
   width: 100%;
   background-size: cover;
-  background-image: url(https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg);
-  background-image: url(https://static.pexels.com/photos/6918/bridge-fog-san-francisco-lets-get-lost-large.jpg);
-  background-image: url(https://static.pexels.com/photos/2027/city-sky-lights-night-large.jpg);
   position: relative;
   display: flex;
   justify-content: flex-end;

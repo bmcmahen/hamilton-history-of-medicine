@@ -15,13 +15,23 @@ import {
   lockTOC,
   showTOCBackdrop
 } from '../../state/actions/layout'
+import stages from './stages/public-health'
 
+// define our logger
 const log = debug('app:ui-Map')
 
 if (__CLIENT__) {
   require('./index.css')
 }
 
+// require media
+let image1 = require('./image1.jpg')
+let image2 = require('./image2.jpg')
+let image3 = require('./image3.jpg')
+let image4 = require('./image4.jpg')
+let image5 = require('./image5.jpg')
+
+// our server-side rendered require statements
 function updatePageName (redux) {
   let { dispatch } = redux
   return new Promise(resolve => {
@@ -41,6 +51,18 @@ function updatePageName (redux) {
   })
 }
 
+function isDetailStage (name) {
+  return ~name.indexOf('-')
+}
+
+// get a particular stage
+function getStage (name) {
+  if (isDetailStage(name)) {
+    let parts = name.split('-')
+    return stages[parts[0]].children[name]
+  }
+  return stages[name]
+}
 
 export default React.createClass({
 
@@ -60,7 +82,8 @@ export default React.createClass({
 
   getInitialState () {
     return {
-      isOpen: false
+      isOpen: false,
+      activeItem: getStage('stage0')
     }
   },
 
@@ -89,7 +112,7 @@ export default React.createClass({
     return (
       <div className='Map'>
         <div className='Map__text-content'>
-          <div className='Map__main-heading'>
+          <div className='Map__main-heading' style={{backgroundImage: `url(${image1})`}}>
             <div className='Map__section Map__section--dark'>
               <Waypoint onLeave={this.onLeaveHeader} onEnter={this.showTableOfContents} />
               <h2>Public Health in Hamilton</h2>
@@ -101,37 +124,37 @@ export default React.createClass({
           </div>
 
           <MapSection
-            key='stage1'
+            keyname='stage1'
             title='Hospitals'
             onEnter={this.onSectionEnter}
             type='light'>
               <p>Mollit excepteur consectetur exercitation qui sint elit sint est amet ullamco.</p>
               <ListView
-                activeKey='stage1'
+                activeKey={this.state.activeItem.key}
                 onItemSelect={this.onItemSelect}
                 listItems={
                   [{
-                    src: 'https://static.pexels.com/photos/4403/black-and-white-building-roof-architecture-large.jpg',
+                    src: image1,
                     label: 'University Hospital',
                     key: 'stage1-0'
                   }, {
-                    src: 'https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg',
+                    src: image2,
                     label: 'Downtown Hospital',
                     key: 'stage1-1'
                   }, {
-                    src: 'https://static.pexels.com/photos/814/building-house-high-rise-hdr-large.jpg',
+                    src: image3,
                     label: 'St. Mary Hospital',
                     key: 'stage1-2'
                   }, {
-                    src: 'https://static.pexels.com/photos/4403/black-and-white-building-roof-architecture-large.jpg',
+                    src: image1,
                     label: 'University Hospital',
                     key: 'stage1-3'
                   }, {
-                    src: 'https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg',
+                    src: image2,
                     label: 'Downtown Hospital',
                     key: 'stage1-4'
                   }, {
-                    src: 'https://static.pexels.com/photos/814/building-house-high-rise-hdr-large.jpg',
+                    src: image3,
                     label: 'St. Mary Hospital',
                     key: 'stage1-5'
                   }]
@@ -139,27 +162,30 @@ export default React.createClass({
               />
           </MapSection>
 
-          <MapSection title='Sewers and Garbage' onEnter={this.onSectionEnter}>
-            <p>Consequat pariatur proident cillum nisi sunt nulla irure proident nulla commodo anim cupidatat.</p>
-            <p>Anim non sit ex labore officia enim proident occaecat sunt. Esse nisi do eu magna qui commodo exercitation labore esse culpa occaecat deserunt reprehenderit. Dolore aliqua id elit deserunt consequat. Ad excepteur adipisicing ullamco laboris esse occaecat anim tempor deserunt pariatur eiusmod exercitation. Mollit officia veniam laboris tempor aliqua aliqua velit ipsum quis ea ipsum. Nulla amet occaecat incididunt et labore sit laboris.
-            Id laborum incididunt veniam do pariatur duis magna nulla reprehenderit nisi exercitation cupidatat culpa ipsum. Proident sit occaecat fugiat anim do ex ad. Ipsum anim eu ullamco consectetur occaecat labore est in qui enim. Ut anim sint est occaecat anim irure quis voluptate aute minim consequat duis id. Magna deserunt qui quis esse dolore.
-            Veniam magna do ullamco voluptate in.</p>
+          <MapSection
+            title='Sewers and Garbage'
+            keyname='stage2'
+            onEnter={this.onSectionEnter}>
+              <p>Consequat pariatur proident cillum nisi sunt nulla irure proident nulla commodo anim cupidatat.</p>
+              <p>Anim non sit ex labore officia enim proident occaecat sunt. Esse nisi do eu magna qui commodo exercitation labore esse culpa occaecat deserunt reprehenderit. Dolore aliqua id elit deserunt consequat. Ad excepteur adipisicing ullamco laboris esse occaecat anim tempor deserunt pariatur eiusmod exercitation. Mollit officia veniam laboris tempor aliqua aliqua velit ipsum quis ea ipsum. Nulla amet occaecat incididunt et labore sit laboris.
+              Id laborum incididunt veniam do pariatur duis magna nulla reprehenderit nisi exercitation cupidatat culpa ipsum. Proident sit occaecat fugiat anim do ex ad. Ipsum anim eu ullamco consectetur occaecat labore est in qui enim. Ut anim sint est occaecat anim irure quis voluptate aute minim consequat duis id. Magna deserunt qui quis esse dolore.
+              Veniam magna do ullamco voluptate in.</p>
           </MapSection>
 
           <ImageSwap
             style={{marginTop: '40px'}}
-            beforeImage='https://static.pexels.com/photos/378/black-and-white-city-building-house.jpg'
-            afterImage='https://static.pexels.com/photos/814/building-house-high-rise-hdr-large.jpg'
+            beforeImage={image4}
+            afterImage={image5}
             caption='Consequat pariatur proident cillum nisi sunt nulla irure proident nulla commodo anim cupidatat.'
           />
 
           <ImageSwap
-            beforeImage='https://static.pexels.com/photos/2255/black-and-white-city-houses-skyline-large.jpg'
-            afterImage='https://static.pexels.com/photos/1188/city-landmark-lights-night-large.jpg'
+            beforeImage={image3}
+            afterImage={image2}
             caption='Id laborum incididunt veniam do pariatur duis magna nulla reprehenderit nisi exercitation cupidatat culpa ipsum. Proident sit occaecat fugiat anim do ex ad. Ipsum anim eu ullamco consectetur occaecat labore est in qui enim. Ut anim sint est occaecat anim irure quis voluptate aute minim consequat duis id. Magna deserunt qui quis esse dolore.'
           />
         </div>
-        <Mapbox />
+        <Mapbox activeItem={this.state.activeItem} />
       </div>
     )
   },
@@ -167,20 +193,26 @@ export default React.createClass({
   showTableOfContents () {
     this.context.redux.dispatch(lockTOC(true))
     this.context.redux.dispatch(showTOC(true))
+    this.context.redux.dispatch(showTOCBackdrop(false))
   },
 
   onLeaveHeader () {
     this.context.redux.dispatch(lockTOC(false))
     this.context.redux.dispatch(showTOC(false))
+    this.context.redux.dispatch(showTOCBackdrop(true))
   },
 
   onItemSelect (item) {
     log('selected item %o', item)
-    this.setState({ isOpen: true })
+    this.setState({
+      isOpen: true,
+      activeItem: getStage(item.key)
+    })
   },
 
   onSectionEnter (name) {
     log('entered section %s', name)
+    this.setState({ activeItem: getStage(name) })
   },
 
   showDetail () {
@@ -194,7 +226,13 @@ export default React.createClass({
   },
 
   onRequestClose () {
-    this.setState({ isOpen: false })
+    let current = this.state.activeItem
+    let state = { isOpen: false }
+    // potentially zoom our stage to the  main stage
+    if (current && isDetailStage(current.key)) {
+      state.activeItem = getStage(current.key.split('-')[0])
+    }
+    this.setState(state)
   }
 
 })

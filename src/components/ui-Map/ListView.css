@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+.MapListView a {
+  max-width: 100%;
+}
+
 .MapListView img {
   max-width: 100%;
 }

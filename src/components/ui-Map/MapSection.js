@@ -9,7 +9,7 @@ if (__CLIENT__) {
 export default class MapSection extends React.Component {
 
   static propTypes = {
-    key: PropTypes.string.isRequired,
+    keyname: PropTypes.string.isRequired,
     onEnter: PropTypes.func,
     title: PropTypes.string,
     className: PropTypes.string,
@@ -42,7 +42,7 @@ export default class MapSection extends React.Component {
   onEnter () {
     let {onEnter} = this.props
     if (onEnter) {
-      onEnter(this.props.key)
+      onEnter(this.props.keyname)
     }
   }
 }

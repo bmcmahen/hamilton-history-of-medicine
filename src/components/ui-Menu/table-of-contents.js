@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import ImmutableTypes from 'react-immutable-proptypes'
 import classNames from 'classnames'
 import {showTOC} from '../../state/actions/layout'
+import TransitionGroup from '../Transition'
 
 if (__CLIENT__) {
   require('./table-of-contents.css')
@@ -49,7 +50,8 @@ export default React.createClass({
 
     const classes = classNames({
       'TableOfContents': true,
-      'TableOfContents--is-active': this.props.isOpen
+      'TableOfContents--is-active': this.props.isOpen,
+      'TableOfContents--has-background': this.props.hasBackdrop
     })
 
     return (
@@ -58,9 +60,13 @@ export default React.createClass({
           <span className='TableOfContents__arrow'> / </span>
           Contents
         </h2>
-        <ul className='TableOfContents__dropdown'>
-          {this.props.options.map(this.renderOption)}
-        </ul>
+        <TransitionGroup enterTimeout={400} leaveTimeout={400} transitionName='fade'>
+          {this.props.isOpen &&
+            <ul className='TableOfContents__dropdown'>
+              {this.props.options.map(this.renderOption)}
+            </ul>
+          }
+        </TransitionGroup>
       </div>
     )
   },
