@@ -19,7 +19,7 @@ export default function generateRoutes () {
     },
     childRoutes: [
       {
-        path: '/timeline',
+        path: '/timeline/:id',
         component: Timeline
       },
       {
@@ -28,6 +28,10 @@ export default function generateRoutes () {
       },
       {
         path: '/map',
+        component: Map
+      },
+      {
+        path: '/map/:id',
         component: Map
       }
     ]

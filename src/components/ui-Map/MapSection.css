@@ -2,7 +2,10 @@
   display: flex;
   opacity: 1;
   justify-content: flex-end;
-  transition: opacity 0.5s ease-out;
+  transition-duration: 0.6s;
+  transform: translate3d(0,0,0);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.6,0,0.2,1);
 }
 
 .MapSection__content {

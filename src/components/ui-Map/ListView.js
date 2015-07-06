@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 import classNames from 'classnames'
+import {Link} from 'react-router'
 
 if (__CLIENT__) {
   require('./ListView.css')
@@ -13,6 +14,7 @@ export default class MapListView extends React.Component {
     listItems: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
       key: PropTypes.string.isRequired
     })).isRequired,
     onItemSelect: PropTypes.func.isRequired,
@@ -43,19 +45,18 @@ export default class MapListView extends React.Component {
     })
     return (
       <li className={classes} key={item.key}>
-        <a href='#' onClick={this.selectItem.bind(this, item, i)}>
+        <Link to={item.href} onClick={this.selectItem.bind(this, item, i)}>
           <img src={item.src} alt={item.label} />
           <div className='MapListView__item-meta'>
             {item.label}
           </div>
-        </a>
+        </Link>
       </li>
     )
   }
 
   selectItem (item, i, e) {
-    e.preventDefault()
-    this.props.onItemSelect(item, i)
+    this.props.onItemSelect(item, i, e)
   }
 
 }

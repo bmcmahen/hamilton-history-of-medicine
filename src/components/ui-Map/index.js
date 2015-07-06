@@ -6,6 +6,7 @@ import Detail from '../ui-Detail'
 import ListView from './ListView'
 import ImageSwap from './ImageSwap'
 import MapSection from './MapSection'
+import {Navigation} from 'react-router'
 import Mapbox from './Mapbox'
 import {
   updatePage,
@@ -68,6 +69,8 @@ export default React.createClass({
 
   displayName: 'Map',
 
+  mixins: [Navigation],
+
   contextTypes: {
     redux: PropTypes.object
   },
@@ -87,6 +90,14 @@ export default React.createClass({
     }
   },
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.params && nextProps.params.id) {
+      this.setState({ isOpen: true })
+    } else {
+      this.setState({ isOpen: false })
+    }
+  },
+
   render () {
     return (
       <Container
@@ -102,6 +113,7 @@ export default React.createClass({
   componentDidMount () {
     // ensure that we have set the name correctly
     updatePageName(this.context.redux)
+    this.componentWillReceiveProps(this.props)
   },
 
   componentWillUnmount () {
@@ -126,6 +138,7 @@ export default React.createClass({
           <MapSection
             keyname='stage1'
             title='Hospitals'
+            style={{ opacity: this.state.isOpen ? 0 : 1 }}
             onEnter={this.onSectionEnter}
             type='light'>
               <p>Mollit excepteur consectetur exercitation qui sint elit sint est amet ullamco.</p>
@@ -136,26 +149,32 @@ export default React.createClass({
                   [{
                     src: image1,
                     label: 'University Hospital',
+                    href: '/map/a',
                     key: 'stage1-0'
                   }, {
                     src: image2,
                     label: 'Downtown Hospital',
+                    href: '/map/b',
                     key: 'stage1-1'
                   }, {
                     src: image3,
+                    href: '/map/c',
                     label: 'St. Mary Hospital',
                     key: 'stage1-2'
                   }, {
                     src: image1,
                     label: 'University Hospital',
+                    href: '/map/d',
                     key: 'stage1-3'
                   }, {
                     src: image2,
                     label: 'Downtown Hospital',
+                    href: '/map/e',
                     key: 'stage1-4'
                   }, {
                     src: image3,
                     label: 'St. Mary Hospital',
+                    href: '/map/f',
                     key: 'stage1-5'
                   }]
                 }
@@ -163,7 +182,7 @@ export default React.createClass({
           </MapSection>
 
           <MapSection
-            title='Sewers and Garbage'
+            title='Water and the Environment'
             keyname='stage2'
             onEnter={this.onSectionEnter}>
               <p>Consequat pariatur proident cillum nisi sunt nulla irure proident nulla commodo anim cupidatat.</p>
@@ -205,7 +224,6 @@ export default React.createClass({
   onItemSelect (item) {
     log('selected item %o', item)
     this.setState({
-      isOpen: true,
       activeItem: getStage(item.key)
     })
   },
@@ -221,7 +239,7 @@ export default React.createClass({
 
   renderDetail () {
     return (
-      <Detail />
+      <Detail params={this.props.params} />
     )
   },
 
@@ -232,6 +250,7 @@ export default React.createClass({
     if (current && isDetailStage(current.key)) {
       state.activeItem = getStage(current.key.split('-')[0])
     }
+    this.replaceWith('/map')
     this.setState(state)
   }
 

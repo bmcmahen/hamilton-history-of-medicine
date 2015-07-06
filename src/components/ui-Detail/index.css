@@ -1,5 +1,6 @@
 .Detail {
-
+  background-color: #41afa5;
+  min-height: 100vh;
 }
 
 .Detail__reference {

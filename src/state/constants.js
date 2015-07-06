@@ -6,5 +6,7 @@ export default keymirror({
   'REMOVE_PAGE_TOC': true,
   'SHOW_PAGE_TOC': true,
   'PAGE_TOC_HAS_BACKGROUND': true,
-  'PAGE_TOC_IS_LOCKED': true
+  'PAGE_TOC_IS_LOCKED': true,
+  'LOAD_DOC': true,
+  'LOADED_DOC': true
 })

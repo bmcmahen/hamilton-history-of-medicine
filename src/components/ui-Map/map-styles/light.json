@@ -1,6 +1,9 @@
 {
   "version": 7,
   "name": "Light",
+  "transition": {
+    "duration": 1000
+  },
   "constants": {
     "@road-motorway-width": {
       "base": 1,

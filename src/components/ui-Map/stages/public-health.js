@@ -59,7 +59,7 @@ export default {
           },
           'properties': {
             'title': 'University Hospital',
-            'marker-symbol': 'harbor'
+            'marker-symbol': 'circle'
           }
         }, {
           'type': 'Feature',
@@ -69,7 +69,7 @@ export default {
           },
           'properties': {
             'title': 'Downtown Hospital',
-            'marker-symbol': 'monument'
+            'marker-symbol': 'circle'
           }
         },
         {
@@ -80,38 +80,38 @@ export default {
           },
           'properties': {
             'title': 'St. Mary Hospital',
-            'marker-symbol': 'monument'
+            'marker-symbol': 'circle'
           }
         }, {
           'type': 'Feature',
           'geometry': {
             'type': 'Point',
-            'coordinates': [-79.84, 43.3543]
+            'coordinates': [-79.75, 43.22]
           },
           'properties': {
             'title': 'University Hospital',
-            'marker-symbol': 'monument'
+            'marker-symbol': 'circle'
           }
         }, {
           'type': 'Feature',
           'geometry': {
             'type': 'Point',
-            'coordinates': [-79.8, 43.58]
+            'coordinates': [-79.8, 43.18]
           },
           'properties': {
             'title': 'Downtown Hospital',
-            'marker-symbol': 'monument'
+            'marker-symbol': 'circle'
           }
         },
         {
           'type': 'Feature',
           'geometry': {
             'type': 'Point',
-            'coordinates': [-79.83, 43.54]
+            'coordinates': [-79.7, 43.2]
           },
           'properties': {
             'title': 'St. Mary Hospital',
-            'marker-symbol': 'monument'
+            'marker-symbol': 'circle'
           }
         }]
       }
@@ -127,7 +127,7 @@ export default {
       paint: {
         'text-size': 14,
         'text-opacity': 0,
-        'text-color': '#3887be',
+        'text-color': '#666',
         'icon-color': '#08c',
         'icon-size': 1,
         'icon-translate': [0, 0],
